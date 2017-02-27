@@ -153,7 +153,7 @@
                     correct_num = localStorage.getItem("correct_num");
                     $("#final_score").html("10問中"+correct_num+"問正解でした。");
                     // プログレスバーで正答率を表現する
-                    $("#result_progress").progressbar({"value":correct_num*10});
+                    $("#final_progress").progressbar({"value":correct_num*10});
                     // 終了のモーダルを表示
                     $("#ending").modal("show");
                 } else { // もう一回
