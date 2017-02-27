@@ -148,7 +148,7 @@ var playProblem = function(student_id,problem_id,session_id,timelimit,correct_nu
     // 選択したspanのidで正誤を判断する
     if (selection_id == "answer") {
       showBingo();
-      var correct_num = localStorage.getItem("correct_num");
+      var correct_num = parseInt(localStorage.getItem("correct_num"));
       localStorage.setItem("correct_num",correct_num + 1);
     } else {
       showMiss();
