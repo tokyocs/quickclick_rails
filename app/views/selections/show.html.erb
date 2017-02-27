@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @selection.student_id %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @selection.problem_id %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @selection.session_id %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @selection.answer %>
+</p>
+
+<p>
+  <strong>Response timing:</strong>
+  <%= @selection.response_timing %>
+</p>
+
+<%= link_to 'Edit', edit_selection_path(@selection) %> |
+<%= link_to 'Back', selections_path %>

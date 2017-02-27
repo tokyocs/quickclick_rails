@@ -1,0 +1,2 @@
+class Reflection < ApplicationRecord
+end

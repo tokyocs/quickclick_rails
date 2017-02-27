@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @reflection.student_id %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @reflection.problem_id %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @reflection.session_id %>
+</p>
+
+<p>
+  <strong>Reflection:</strong>
+  <%= @reflection.reflection %>
+</p>
+
+<p>
+  <strong>Response timing:</strong>
+  <%= @reflection.response_timing %>
+</p>
+
+<%= link_to 'Edit', edit_reflection_path(@reflection) %> |
+<%= link_to 'Back', reflections_path %>

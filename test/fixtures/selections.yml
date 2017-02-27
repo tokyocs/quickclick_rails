@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_id: 1
+  problem_id: 1
+  session_id: MyString
+  answer: MyString
+  response_timing: MyString
+
+two:
+  student_id: 1
+  problem_id: 1
+  session_id: MyString
+  answer: MyString
+  response_timing: MyString

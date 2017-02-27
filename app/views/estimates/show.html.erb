@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @estimate.student_id %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @estimate.problem_id %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @estimate.session_id %>
+</p>
+
+<p>
+  <strong>Estimated time:</strong>
+  <%= @estimate.estimated_time %>
+</p>
+
+<p>
+  <strong>Response timing:</strong>
+  <%= @estimate.response_timing %>
+</p>
+
+<%= link_to 'Edit', edit_estimate_path(@estimate) %> |
+<%= link_to 'Back', estimates_path %>

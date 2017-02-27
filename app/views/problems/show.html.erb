@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @problem.problem %>
+</p>
+
+<p>
+  <strong>Image url:</strong>
+  <%= @problem.image_url %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @problem.answer %>
+</p>
+
+<p>
+  <strong>Dummy1:</strong>
+  <%= @problem.dummy1 %>
+</p>
+
+<p>
+  <strong>Dummy2:</strong>
+  <%= @problem.dummy2 %>
+</p>
+
+<p>
+  <strong>Dummy3:</strong>
+  <%= @problem.dummy3 %>
+</p>
+
+<%= link_to 'Edit', edit_problem_path(@problem) %> |
+<%= link_to 'Back', problems_path %>

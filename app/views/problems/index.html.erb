@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Problems</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Problem</th>
+      <th>Image url</th>
+      <th>Answer</th>
+      <th>Dummy1</th>
+      <th>Dummy2</th>
+      <th>Dummy3</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @problems.each do |problem| %>
+      <tr>
+        <td><%= problem.problem %></td>
+        <td><%= problem.image_url %></td>
+        <td><%= problem.answer %></td>
+        <td><%= problem.dummy1 %></td>
+        <td><%= problem.dummy2 %></td>
+        <td><%= problem.dummy3 %></td>
+        <td><%= link_to 'Show', problem %></td>
+        <td><%= link_to 'Edit', edit_problem_path(problem) %></td>
+        <td><%= link_to 'Destroy', problem, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<hr>
+<%= form_tag import_problems_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "インポート" %>
+<% end %>
+
+<hr>
+
+<%= link_to 'New Problem', new_problem_path %>

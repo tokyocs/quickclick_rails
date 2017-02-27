@@ -1,0 +1,135 @@
+<!-- ナビゲーションバー -->
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="#">QuickClick</a>
+    </div>
+</div>
+</nav>
+<!-- 問題出題エリア -->
+<div class="container">
+    <div class="row">
+        <!-- 左側の問題エリア -->
+        <div class="panel col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <hr>
+            <div class="panel-body">
+                <div id="progress"></div>
+            </div>
+            <hr>
+            <div class="panel-body">
+                <div id="image"></div>
+            </div>
+            <hr>
+            <div class="palen-body">
+                <div id="problem"></div>
+            </div>
+        </div>
+        <!-- 右側のボタンエリア -->
+        <div id="buttonarea" class="panel col-md-6 col-lg-6 col-sm-12 col-xs-12">
+            <hr>
+            <div class="panel-body">
+                <div id="parentselection1" class="btn btn-default btn-block btn-lg"><h1><span id="selection1"> </span></h1></div>
+            </div>
+            <div class="panel-body">
+                <div id="parentselection2" class="btn btn-default btn-block btn-lg"><h1><span id="selection2"> </span></h1></div>
+            </div>
+            <div class="panel-body">
+                <div id="parentselection3" class="btn btn-default btn-block btn-lg"><h1><span id="selection3"> </span></h1></div>
+            </div>
+            <div class="panel-body">
+                <div id="parentselection4" class="btn btn-default btn-block btn-lg"><h1><span id="selection4"> </span></h1></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- スタートボタン -->
+<div class="modal fade" id="start" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3>
+                    下のスタートボタンを押すと算数の問題を解くことができます。<br/>
+                    問題は全部で10問。まずは問題を見て「何分で解けそうか」を見積もってください。
+                <h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-block" id="btn_start" ><h3>スタート！</h3></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 何分で解けそうか見積もる -->
+<div class="modal fade" id="estimate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div id="estimate_progress"></div>
+            </div>
+            <div class="modal-body">
+                <h3>何分で解けそうですか？<br/>10秒以内に選んでください。</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" id="btn5min" ><p>５分</p></button>
+                <button type="button" class="btn btn-success" id="btn3min" ><p>３分</p></button>
+                <button type="button" class="btn btn-success" id="btn1min" ><p>１分</p></button>
+                <button type="button" class="btn btn-success" id="btn30sec" ><p>30秒</p></button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 見直すか聞く -->
+<div class="modal fade" id="reflection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3>あなたの答えは...</h3>
+                <h3><span id="ref_answer"></span></h3>
+                <h3>です。</h3>
+                <h3>見直しますか？</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-block" id="btnref" ><h3>見直す</h3></button><br/>
+                <button type="button" class="btn btn-primary btn-block" id="btngo" ><h3>答える</h3></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 結果を表示（途中） -->
+<div class="modal fade" id="answer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <h3 id="result"><span id="kekka"></span></h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success btn-block" id="btn_next" ><h3>次へ</h3></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 結果を表示（最後） -->
+<div class="modal fade" id="ending" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h3 class="text-center">
+                    結果は...<br/>
+                    <span id="final_score"></span>
+                </h3>
+                <div class="progress">
+                    <div id="final_progress" class="progress-bar progress-bar-success"></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <%= link_to top_path, :class => "btn btn-danger btn-block" do %>
+                    <h3>ホームに戻る</h3>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>

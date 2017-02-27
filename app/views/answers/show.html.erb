@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @answer.student_id %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @answer.problem_id %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @answer.session_id %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @answer.answer %>
+</p>
+
+<p>
+  <strong>Response timing:</strong>
+  <%= @answer.response_timing %>
+</p>
+
+<%= link_to 'Edit', edit_answer_path(@answer) %> |
+<%= link_to 'Back', answers_path %>

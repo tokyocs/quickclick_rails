@@ -1,0 +1,42 @@
+<%= form_for(reflection) do |f| %>
+  <% if reflection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(reflection.errors.count, "error") %> prohibited this reflection from being saved:</h2>
+
+      <ul>
+      <% reflection.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :student_id %>
+    <%= f.number_field :student_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :problem_id %>
+    <%= f.number_field :problem_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :session_id %>
+    <%= f.text_field :session_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :reflection %>
+    <%= f.check_box :reflection %>
+  </div>
+
+  <div class="field">
+    <%= f.label :response_timing %>
+    <%= f.text_field :response_timing %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

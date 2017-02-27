@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quickclick</title>
+    <%= csrf_meta_tags %>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/united/bootstrap.min.css" rel="stylesheet" integrity="sha384-pVJelSCJ58Og1XDc2E95RVYHZDPb9AVyXsI8NoVpB2xmtxoZKJePbMfE4mlXw7BJ" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-k2/8zcNbxVIh5mnQ52A0r3a6jAgMGxFJFE2707UxGCk= sha512-ZV9KawG2Legkwp3nAlxLIVFudTauWuBpC10uEafMHYL0Sarrz5A7G79kXh5+5+woxQ5HM559XX2UZjMJ36Wplg==" crossorigin="anonymous">
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ["\\(","\\)"]] } });
+    </script>
+    <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
+  </head>
+
+  <body>
+    <%= yield %>
+    <%= javascript_include_tag 'application' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        $(function(){
+            // 変数の宣言
+            var problems,
+                problem,
+                timelimit,
+                remaintime,
+                response_timing,
+                selection_id,
+                selection_val;
+            var session_id = getNow();
+            var student_id = parseInt("<%= params[:student_id] %>");
+            var problem_counter = 0;
+            // localStorageの設定
+            var datatable = [];
+            localStorage.setItem("datatable",JSON.stringify(datatable));
+            localStorage.setItem("correct_num",0);
+            localStorage.setItem("problem_id",0);
+            // 推定する内容
+            var estimate = null;
+
+            // Mordalのセッティング
+            // 開始モーダル
+            $("#start").modal({
+                backdrop: true,
+                keyboard: false
+            });
+            // 開始モーダルは初めに表示させる
+            $("#start").modal("show");
+            // 見積もりモーダル
+            $("#estimate").modal({
+                backdrop: false,
+                keyboard: false
+            });
+            //　見積もりモーダルは非表示
+            $("#estimate").modal("hide");
+            // 見直しモーダル
+            $("#reflection").modal({
+                backdrop: false,
+                keyboard: false
+            });
+            // 見直しモーダルは非表示
+            $("#reflection").modal("hide");
+            // 回答モーダル
+            $("#answer").modal({
+                backdrop: false,
+                keyboard: false
+            });
+            // 回答モーダルは非表示
+            $("#answer").modal("hide");
+            // 終了モーダル
+            $("#ending").modal({
+                backdrop: false,
+                keyboard: false
+            });
+            // 終了モーダルは非表示
+            $("#ending").modal("hide");
+
+            // プログレスバーの設定
+            $("#progress").progressbar({value:100});
+            $("#final_progress").progressbar({value:0});
+            $("#estimate_progress").progressbar({value:100});
+
+
+            // 問題を10問取得する。
+            $.ajax({
+                url: '/problems/experiment',
+                type: 'GET',
+                beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))}
+            }).done(function(data){
+                problems = data;
+            });
+            var sendData = setInterval(function(){
+                queues = JSON.parse(localStorage.getItem("datatable"));
+                if(queues.length > 0){
+                    dataset = queues[0];
+                    queues.shift();
+                    sendApi(dataset.dataset,dataset.apipath);
+                    localStorage.setItem("datatable",JSON.stringify(queues));
+                }
+            }, 1000);
+            // 問題を見て時間を見積もる。
+            $("#btn_start").on("click",function(){
+                // スタートのモーダルを閉じる
+                $("#start").modal("hide");
+                // 問題を一つ選ぶ
+                problem = problems[problem_counter];
+                // 現在解いている問題IDを設定する
+                localStorage.setItem("problem_id",problem.id);
+                // 問題を表示させる
+                setProblem(problem);
+                // 見積もるモーダルを開く
+                $("#estimate").modal("show");
+                $("#estimate_progress").progressbar({value:100});
+                var estimate_time = 100;
+                estimate = setInterval(function(){
+                    estimate_time = estimate_time - 1;
+                    $("#estimate_progress").progressbar({value:estimate_time});
+                    if (estimate_time < 0){
+                        clearInterval(estimate);
+                    }
+                }, 100);
+            });
+
+            // 5分と見積もった場合。
+            $("#btn5min").on("click",function(){
+                clearInterval(estimate);
+                playProblem(student_id,problem.id,session_id,3000000);
+            });
+
+            // 3分と見積もった場合。
+            $("#btn3min").on("click",function(){
+                clearInterval(estimate);
+                playProblem(student_id,problem.id,session_id,1800000);
+            });
+
+            // 1分と見積もった場合。
+            $("#btn1min").on("click",function(){
+                clearInterval(estimate);
+                playProblem(student_id,problem.id,session_id,600000);
+            });
+
+            // 30秒と見積もった場合。
+            $("#btn30sec").on("click",function(){
+                clearInterval(estimate);
+                playProblem(student_id,problem.id,session_id,300000);
+            });
+
+            // 次の問題に行くか、終わるかを決める
+            $("#btn_next").on("click",function(){
+                $("#answer").modal("hide");
+                if (problem_counter > 8){ // 10問解いた後
+                    // 結果をパーセンテージで表示
+                    correct_num = localStorage.getItem("correct_num");
+                    $("#final_score").html("10問中"+correct_num+"問正解でした。");
+                    // プログレスバーで正答率を表現する
+                    $("#result_progress").progressbar({"value":correct_num*10});
+                    // 終了のモーダルを表示
+                    $("#ending").modal("show");
+                } else { // もう一回
+                    // 問題カウンターを1増やす
+                    problem_counter++;
+                    // 回答の変数の値を初期化
+                    clearProblem();
+                    // 問題を一つ選ぶ
+                    problem = problems[problem_counter];
+                    // 問題を表示させる
+                    setProblem(problem);
+                    // 見積もりモーダルを表示
+                    $("#estimate").modal("show");
+                    $("#estimate_progress").progressbar({value:100});
+                    var estimate_time = 100;
+                    var estimate = setInterval(function(){
+                        estimate_time = estimate_time - 1;
+                        $("#estimate_progress").progressbar({value:estimate_time});
+                        if (estimate_time < 0){
+                            clearInterval(estimate);
+                        }
+                    }, 100);
+
+                }
+            });
+        });
+    </script>
+  </body>
+</html>
