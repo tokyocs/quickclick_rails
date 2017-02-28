@@ -80,6 +80,8 @@ var getNow = function(){
 var showTimeup = function(answer){
   // メッセージを表示
   $("#kekka").html("タイムアップ、残念・・・。");
+  // 振り返りモーダルを隠す
+  $("#reflection").modal("hide");
   // 回答モーダルを表示
   $("#answer").modal("show");
 }
