@@ -1,24 +1,13 @@
-# README
+# 実験用QuickClick
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 外部CDNにアップロードされている画像を利用して問題を出すことができます。
 
-Things you may want to cover:
+* 回答までのプロセス
 
-* Ruby version
+1. 回答時間を見積もる
 
-* System dependencies
+2. 問題に答える
 
-* Configuration
+3. 見直すか、答えるかを決める
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+4. 回答する
