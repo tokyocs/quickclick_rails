@@ -1,27 +1,18 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-<div class="container">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="/">QuickClick</a>
-    </div>
+<div class="row">
+    <h2>自分のイニシャルをクリックしてプレイ！</h2>
 </div>
-</nav>
-<div class="container">
-    <div class="row">
-        <h2>自分のイニシャルをクリックしてプレイ！</h2>
-    </div>
-    <div class="row">
-        <% @students.each_slice(4) do |slice| %>
-            <div class="row-fluid">
-                <% slice.each do |student| %>
-                <div class="panel panel-default col-md-3 col-lg-3 col-sm-3 col-xs-3">
-                    <div class="panel-body">
-                            <%= link_to play_path(student.id), :class => "btn btn-primary btn-block btn-lg" do %>
-                                <%= student.name %>
-                            <% end %>
-                    </div>
+<div class="row">
+    <% @students.each_slice(4) do |slice| %>
+        <div class="row-fluid">
+            <% slice.each do |student| %>
+            <div class="panel panel-default col-md-3 col-lg-3 col-sm-3 col-xs-3">
+                <div class="panel-body">
+                        <%= link_to play_path(student.id), :class => "btn btn-primary btn-block btn-lg" do %>
+                            <%= student.name %>
+                        <% end %>
                 </div>
-                <% end %>
             </div>
-        <% end %>
-    </div>
+            <% end %>
+        </div>
+    <% end %>
 </div>

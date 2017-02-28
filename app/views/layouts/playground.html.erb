@@ -89,6 +89,7 @@
             }).done(function(data){
                 problems = data;
             });
+            // 1秒に1回localStorageに溜まっているログをサーバに送信する
             var sendData = setInterval(function(){
                 queues = JSON.parse(localStorage.getItem("datatable"));
                 if(queues.length > 0){
