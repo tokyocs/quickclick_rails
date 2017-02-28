@@ -18,8 +18,8 @@ class SelectionsController < ApplicationController
   end
 
   # GET /selections/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /selections
   # POST /selections.json
@@ -39,27 +39,27 @@ class SelectionsController < ApplicationController
 
   # PATCH/PUT /selections/1
   # PATCH/PUT /selections/1.json
-  def update
-    respond_to do |format|
-      if @selection.update(selection_params)
-        format.html { redirect_to @selection, notice: 'Selection was successfully updated.' }
-        format.json { render :show, status: :ok, location: @selection }
-      else
-        format.html { render :edit }
-        format.json { render json: @selection.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @selection.update(selection_params)
+  #       format.html { redirect_to @selection, notice: 'Selection was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @selection }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @selection.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /selections/1
   # DELETE /selections/1.json
-  def destroy
-    @selection.destroy
-    respond_to do |format|
-      format.html { redirect_to selections_url, notice: 'Selection was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @selection.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to selections_url, notice: 'Selection was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -18,8 +18,8 @@ class ReflectionsController < ApplicationController
   end
 
   # GET /reflections/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /reflections
   # POST /reflections.json
@@ -39,27 +39,27 @@ class ReflectionsController < ApplicationController
 
   # PATCH/PUT /reflections/1
   # PATCH/PUT /reflections/1.json
-  def update
-    respond_to do |format|
-      if @reflection.update(reflection_params)
-        format.html { redirect_to @reflection, notice: 'Reflection was successfully updated.' }
-        format.json { render :show, status: :ok, location: @reflection }
-      else
-        format.html { render :edit }
-        format.json { render json: @reflection.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @reflection.update(reflection_params)
+  #       format.html { redirect_to @reflection, notice: 'Reflection was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @reflection }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @reflection.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /reflections/1
   # DELETE /reflections/1.json
-  def destroy
-    @reflection.destroy
-    respond_to do |format|
-      format.html { redirect_to reflections_url, notice: 'Reflection was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @reflection.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to reflections_url, notice: 'Reflection was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -18,8 +18,8 @@ class EstimatesController < ApplicationController
   end
 
   # GET /estimates/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /estimates
   # POST /estimates.json
@@ -39,27 +39,27 @@ class EstimatesController < ApplicationController
 
   # PATCH/PUT /estimates/1
   # PATCH/PUT /estimates/1.json
-  def update
-    respond_to do |format|
-      if @estimate.update(estimate_params)
-        format.html { redirect_to @estimate, notice: 'Estimate was successfully updated.' }
-        format.json { render :show, status: :ok, location: @estimate }
-      else
-        format.html { render :edit }
-        format.json { render json: @estimate.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @estimate.update(estimate_params)
+  #       format.html { redirect_to @estimate, notice: 'Estimate was successfully updated.' }
+  #       format.json { render :show, status: :ok, location: @estimate }
+  #     else
+  #       format.html { render :edit }
+  #       format.json { render json: @estimate.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /estimates/1
   # DELETE /estimates/1.json
-  def destroy
-    @estimate.destroy
-    respond_to do |format|
-      format.html { redirect_to estimates_url, notice: 'Estimate was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  # def destroy
+  #   @estimate.destroy
+  #   respond_to do |format|
+  #     format.html { redirect_to estimates_url, notice: 'Estimate was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
