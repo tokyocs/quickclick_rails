@@ -109,6 +109,8 @@
                 localStorage.setItem("problem_id",problem.id);
                 // 問題を表示させる
                 setProblem(problem);
+                // 開始のログを送る
+                sendStartlog(student_id,problem.id,session_id);
                 // 見積もるモーダルを開く
                 $("#estimate").modal("show");
                 $("#estimate_progress").progressbar({value:100});
@@ -166,6 +168,8 @@
                     problem = problems[problem_counter];
                     // 問題を表示させる
                     setProblem(problem);
+                    // 開始のログを送る
+                    sendStartlog(student_id,problem.id,session_id);
                     // 見積もりモーダルを表示
                     $("#estimate").modal("show");
                     $("#estimate_progress").progressbar({value:100});

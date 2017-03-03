@@ -37,6 +37,14 @@ var clearProblem = function(problem){
   $("#btnref").off("click");
   $("#estimate_progress").progressbar({value:100});
 }
+// 開始ログを送る。
+var sendStartlog = function(student_id,problem_id,session_id){
+  // 現在時刻を取得
+  response_timing = getNow();
+  // ログを送信
+  insertDatabase({start:{student_id:student_id,problem_id:problem_id,session_id:session_id,response_timing:response_timing}},'/starts');
+
+}
 
 // 見積もりログを送る。
 var sendEstimatelog = function(student_id,problem_id,session_id,estimated_time){

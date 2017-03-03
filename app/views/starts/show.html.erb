@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Student:</strong>
+  <%= @start.student_id %>
+</p>
+
+<p>
+  <strong>Problem:</strong>
+  <%= @start.problem_id %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @start.session_id %>
+</p>
+
+<p>
+  <strong>Response timing:</strong>
+  <%= @start.response_timing %>
+</p>
+
+<%= link_to 'Edit', edit_start_path(@start) %> |
+<%= link_to 'Back', starts_path %>

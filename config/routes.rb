@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :starts
   get 'play/:student_id', to: 'playground#index', as: 'play'
   root 'home#index', as: :top
 
