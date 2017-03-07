@@ -28,8 +28,8 @@ class ProblemsController < ApplicationController
   end
 
   def experiment
-      # 3月2日仕様。
-      @problems = Problem.find([*21..30])
+      # 3月7日仕様。
+      @problems = Problem.find([*31..40])
       render json: @problems
   end
 
