@@ -29,7 +29,7 @@ class ProblemsController < ApplicationController
 
   def experiment
       # 4月18日仕様。
-      @problems = Problem.find([*81..90])
+      @problems = Problem.find([*91..100])
       render json: @problems
   end
 
